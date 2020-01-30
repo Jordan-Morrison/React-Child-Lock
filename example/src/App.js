@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import ExampleComponent from 'react-site-lock'
+import SiteLock from 'react-site-lock';
 
 export default class App extends Component {
   render () {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
+      <div className="app">
+        <SiteLock password="a"/>
+        <h1>WELCOME TO MY SITE</h1>
       </div>
     )
   }
