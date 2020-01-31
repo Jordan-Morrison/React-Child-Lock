@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export default function SiteLock(props) {
+export default function ChildLock(props) {
 
     const [errorText, setErrorText] = useState(null);
 
@@ -11,7 +11,7 @@ export default function SiteLock(props) {
     function checkPassword() {
         if (passwordInput.current.value === props.password){
             if (props.localStorage && localStorage){
-                localStorage.siteLockPass = passwordInput.current.value;
+                localStorage.childLockPass = passwordInput.current.value;
             }
             loginScreen.current.remove();
         }
@@ -36,9 +36,15 @@ export default function SiteLock(props) {
         return styles.loginScreen;
     }
 
+    function handleEnterSubmit(ev){
+        if (ev.key === "Enter"){
+            checkPassword();
+        }
+    }
+
     useEffect(() => {
         if (props.localStorage && localStorage){
-            if (localStorage.siteLockPass === props.password){
+            if (localStorage.childLockPass === props.password){
                 loginScreen.current.remove();
             }
         }
@@ -49,8 +55,8 @@ export default function SiteLock(props) {
             <div style={styles.contentBox}>
                 {props.customContent}
                 <div style={styles.inputDiv}>
-                    <h1>{props.inputLabelText}</h1>
-                    <input style={styles.inputBox} ref={passwordInput} type="password"></input>
+                    <h1 style={styles.text}>{props.inputLabelText}</h1>
+                    <input style={{...styles.inputBox, ...styles.text}} ref={passwordInput} onKeyPress={handleEnterSubmit} type="password"></input>
                 </div>
                 <p style={styles.errorText}>{errorText}</p>
                 <button style={styles.button} onClick={checkPassword}>{props.buttonText}</button>
@@ -59,7 +65,7 @@ export default function SiteLock(props) {
     );
 }
 
-SiteLock.propTypes = {
+ChildLock.propTypes = {
     password: PropTypes.string,
     localStorage: PropTypes.bool,
     customContent: PropTypes.element,
@@ -74,7 +80,7 @@ SiteLock.propTypes = {
     errorText: PropTypes.string
 };
 
-SiteLock.defaultProps = {
+ChildLock.defaultProps = {
     password: "Password",
     inputLabelText: "Password:",
     buttonText: "Enter Site",
@@ -116,8 +122,12 @@ const styles = {
         alignItems: "center"
     },
     inputBox: {
-        fontSize: "2em",
-        marginLeft: 10
+        marginLeft: 10,
+        borderRadius: 3,
+        border: "solid #5a5a5a 1px"
+    },
+    text: {
+        fontSize: "1.5em"
     },
     errorText: {
         color: "red",
@@ -125,8 +135,17 @@ const styles = {
         fontSize: "1em"
     },
     button: {
-        fontSize: "1.5em",
-        padding: "10px 30px",
-        marginTop: 20
+        marginTop: 10,
+        backgroundColor: "#335075",
+        borderColor: "#335075",
+        color: "white",
+        padding: ".5em 1.5em",
+        boxShadow: "0 4px #ddd",
+        borderStyle: "outset",
+        height: "auto",
+        minWidth: 120,
+        borderRadius: 4,
+        fontSize: "1em",
+        cursor: "pointer"
     }
 }

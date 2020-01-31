@@ -9,7 +9,7 @@
     "react": "file:../node_modules/react",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "react-site-lock": "file:.."
+    "react-child-lock": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",
