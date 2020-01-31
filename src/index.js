@@ -8,6 +8,7 @@ export default function ChildLock(props) {
     const loginScreen = useRef(null);
     const passwordInput = useRef(null);
 
+    // Checks if the correct password is entered, if so unlocks the site
     function checkPassword() {
         if (passwordInput.current.value === props.password){
             if (props.localStorage && localStorage){
@@ -20,6 +21,8 @@ export default function ChildLock(props) {
         }
     }
 
+    // Checks & sets custom backgrounds, if no custom background is set then the default is used
+    // Default styling uses a random image from unsplash set to the dimensions of the user's screen
     function setBackground() {
         if (props.background.color){
             return {
@@ -36,6 +39,7 @@ export default function ChildLock(props) {
         return styles.loginScreen;
     }
 
+    // Checks if the user pressed enter to submit, if so checks the password
     function handleEnterSubmit(ev){
         if (ev.key === "Enter"){
             checkPassword();
@@ -43,6 +47,7 @@ export default function ChildLock(props) {
     }
 
     useEffect(() => {
+        // If localstorage is enabled and the password is stored then the login screen is automatically bypassed
         if (props.localStorage && localStorage){
             if (localStorage.childLockPass === props.password){
                 loginScreen.current.remove();
