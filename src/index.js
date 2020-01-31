@@ -20,6 +20,22 @@ export default function SiteLock(props) {
         }
     }
 
+    function setBackground() {
+        if (props.background.color){
+            return {
+                ...styles.loginScreen,
+                backgroundColor: props.background.color
+            };
+        }
+        else if (props.background.image){
+            return {
+                ...styles.loginScreen,
+                backgroundImage: `url(${props.background.image})`
+            };
+        }
+        return styles.loginScreen;
+    }
+
     useEffect(() => {
         if (props.localStorage && localStorage){
             if (localStorage.siteLockPass === props.password){
@@ -29,13 +45,16 @@ export default function SiteLock(props) {
     },[])
 
     return (
-        <div style={styles.loginScreen} ref={loginScreen}>
-            <div style={styles.inputDiv}>
-                <h1>{props.inputLabelText}</h1>
-                <input style={styles.inputBox} ref={passwordInput} type="password"></input>
+        <div style={setBackground()} ref={loginScreen}>
+            <div style={styles.contentBox}>
+                {props.customContent}
+                <div style={styles.inputDiv}>
+                    <h1>{props.inputLabelText}</h1>
+                    <input style={styles.inputBox} ref={passwordInput} type="password"></input>
+                </div>
+                <p style={styles.errorText}>{errorText}</p>
+                <button style={styles.button} onClick={checkPassword}>{props.buttonText}</button>
             </div>
-            <p style={styles.errorText}>{errorText}</p>
-            <button style={styles.button} onClick={checkPassword}>{props.buttonText}</button>
         </div>
     );
 }
@@ -43,7 +62,13 @@ export default function SiteLock(props) {
 SiteLock.propTypes = {
     password: PropTypes.string,
     localStorage: PropTypes.bool,
-    
+    customContent: PropTypes.element,
+    background: PropTypes.oneOfType([PropTypes.shape({
+        image: PropTypes.string.isRequired
+    }), PropTypes.shape({
+        color: PropTypes.string.isRequired
+    })]),
+
     inputLabelText: PropTypes.string,
     buttonText: PropTypes.string,
     errorText: PropTypes.string
@@ -53,7 +78,10 @@ SiteLock.defaultProps = {
     password: "Password",
     inputLabelText: "Password:",
     buttonText: "Enter Site",
-    errorText: "Sorry, that password is incorrect"
+    errorText: "Sorry, that password is incorrect",
+    background: {
+        image: `https://source.unsplash.com/random/${window ? window.innerWidth : 1000}x${window ? window.innerHeight : 800}`
+    }
 };
 
 const styles = {
@@ -67,7 +95,20 @@ const styles = {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         zIndex: 999
+    },
+    contentBox: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "white",
+        padding: 30,
+        marginBottom: 100,
+        borderRadius: 6,
+        boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.3)"
     },
     inputDiv: {
         display: "flex",

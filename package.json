@@ -1,5 +1,5 @@
 {
-  "name": "react-site-lock",
+  "name": "react-child-lock",
   "version": "1.0.0",
   "description": "Add a simple lock to prevent your site from being accessed by users while under development",
   "author": "Jordan-Morrison",

@@ -1,13 +1,13 @@
-# react-site-lock
+# react-child-lock
 
 > Add a simple lock to prevent your site from being accessed by users while under development
 
-[![NPM](https://img.shields.io/npm/v/react-site-lock.svg)](https://www.npmjs.com/package/react-site-lock) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-child-lock.svg)](https://www.npmjs.com/package/react-child-lock) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-site-lock
+npm install --save react-child-lock
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install --save react-site-lock
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-site-lock'
+import MyComponent from 'react-child-lock'
 
 class Example extends Component {
   render () {
