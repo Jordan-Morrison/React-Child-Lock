@@ -91,7 +91,7 @@ ChildLock.defaultProps = {
     buttonText: "Enter Site",
     errorText: "Sorry, that password is incorrect",
     background: {
-        image: `https://source.unsplash.com/random/${typeof window ? window.innerWidth : 1000}x${typeof window ? window.innerHeight : 800}`
+        image: `https://source.unsplash.com/random/${typeof window !== "undefined" ? window.innerWidth : 1000}x${typeof window !== "undefined" ? window.innerHeight : 800}`
     }
 };
 
