@@ -1,10 +1,10 @@
 {
   "name": "react-child-lock",
-  "version": "1.0.0",
-  "description": "Add a simple lock to prevent your site from being accessed by users while under development",
+  "version": "1.0.1",
+  "description": "Add a simple & customizable lock to prevent your site from being accessed by users while under development",
   "author": "Jordan-Morrison",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/Jordan-Morrison/React-Child-Lock",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -57,5 +57,13 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "lock",
+    "early access",
+    "beta",
+    "alpha",
+    "testing",
+    "child lock"
   ]
 }

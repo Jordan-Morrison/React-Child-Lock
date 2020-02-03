@@ -9,7 +9,6 @@ export default function App() {
                 password="earlyAccess!"
                 localStorage={true}
                 customContent={<BetaNotice/>}
-                background={{color: "blue"}}
                 inputLabelText="Access Code:"
                 buttonText="Enter"
                 errorText="Incorrect password, please try again."
